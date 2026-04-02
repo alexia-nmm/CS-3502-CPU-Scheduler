@@ -1,94 +1,107 @@
-# CPU-Simulator using Windows Forms
+# CPU Scheduler Simulator
 
-This project provides a Windows Forms application that demonstrates common CPU scheduling algorithms through an interactive graphical interface. Each algorithm prompts for basic input and displays the resulting waiting or turnaround times using message boxes and on-screen tables.
+A Windows Forms application that demonstrates CPU scheduling algorithms through
+an interactive graphical interface. Built for CS 3502: Operating Systems at
+Kennesaw State University.
 
-**Fork maintained by Chris Regan** - Original creator: Francis (used with permission)
+**Fork maintained by Chris Regan** — Original creator: Francis (used with permission)  
+**Extended by: YOUR NAME HERE** — Added SRTF and HRRN algorithms for Project 2
 
-## Project status
+---
 
-The simulator is functional but still a work in progress. Currently the following scheduling strategies are available:
+## Algorithms Implemented
 
-| Algorithm | Method | Notes |
-|-----------|--------|-------|
-| First Come First Serve | `Algorithms.RunFirstComeFirstServe` | Processes are executed in order of arrival. |
-| Shortest Job First | `Algorithms.RunShortestJobFirst` | Jobs are sorted by burst time before execution. |
-| Priority Scheduling | `Algorithms.RunPriorityScheduling` | User supplies a priority value for each job. |
-| Round Robin | `Algorithms.RunRoundRobin` | Requires a quantum time parameter. |
+| Algorithm | Type | Notes |
+|-----------|------|-------|
+| First Come First Serve (FCFS) | Non-preemptive | Executes in arrival order |
+| Shortest Job First (SJF) | Non-preemptive | Selects shortest burst time first |
+| Priority Scheduling | Non-preemptive | Higher number = higher priority |
+| Round Robin (RR) | Preemptive | Requires a time quantum parameter |
+| **Shortest Remaining Time First (SRTF)** | **Preemptive** | **Preemptive version of SJF** |
+| **Highest Response Ratio Next (HRRN)** | **Non-preemptive** | **Selects by (Wait+Burst)/Burst** |
 
-Additional algorithms can easily be added by extending `Algorithms.cs`.
+---
 
 ## Requirements
 
-- Windows operating system
-- .NET 8.0 SDK or newer
-- Visual Studio 2022 or VS Code with C# extensions
+- **OS:** Windows 10 or Windows 11
+- **Runtime:** .NET 8.0 SDK or newer
+- **IDE:** Visual Studio 2022 or VS Code with C# Dev Kit extension
 
-## How to run
+---
 
-### Using Visual Studio
+## How to Run
 
-1. Clone the repository:
-
-   ```bash
-   git clone git@github.com:iAmGiG/CS-3502-CPU-Sim-Project-StartingPoint.git
-   ```
-
-2. Open `CpuScheduler.sln` in Visual Studio 2022
-3. Press F5 to build and run the application
-
-### Using VS Code
+### Using VS Code Terminal (Recommended)
 
 1. Clone the repository:
-
    ```bash
-   git clone git@github.com:iAmGiG/CS-3502-CPU-Sim-Project-StartingPoint.git
+   git clone https://github.com/alexia-nmm/CS-3502-CPU-Scheduler.git
    ```
 
-2. Install the C# Dev Kit extension in VS Code
-
-3. Open the project folder in VS Code
-
-4. **Option A - Using the Debugger (Recommended):**
-   - Press **F5** or go to Run & Debug panel
-   - Select ".NET Core Launch (console)" configuration
-   - This will build and launch the Windows Forms app with debugging support
-
-5. **Option B - Using Terminal (May have termination issues):**
-
+2. Navigate to the project folder:
    ```bash
-   dotnet build
+   cd CS-3502-CPU-Scheduler
+   ```
+
+3. Run the application:
+   ```bash
    dotnet run --project CpuScheduler/CpuScheduler.csproj
    ```
 
-   **Note:** Windows Forms apps may not terminate cleanly in VS Code's integrated terminal
+### Using Visual Studio 2022
 
-6. **Option C - Run the Built Executable Directly:**
+1. Open `CpuScheduler.sln` in Visual Studio 2022
+2. Press **F5** to build and run
 
-   ```bash
-   dotnet build
-   # Then navigate to: CpuScheduler/bin/Debug/net8.0-windows/CpuScheduler.exe
-   # Double-click the .exe file or run from command prompt
-   ```
+---
 
-### Using .NET CLI
+## How to Use
 
-From the project root directory:
+1. The app opens with 5 default processes loaded
+2. Edit process data directly in the grid (Process ID, Burst Time, Priority, Arrival Time)
+3. Click **Set Process Count** to change the number of processes
+4. Use **Generate Random** to populate with random values
+5. Click any algorithm button to run the simulation
+6. View results in the **Results** tab — includes all performance metrics
+7. Use **Save Data / Load Data** to export and import CSV process data
 
-```bash
-# Build the project
-dotnet build
+---
 
-# Run the application
-dotnet run --project CpuScheduler/CpuScheduler.csproj
+## Performance Metrics Displayed
+
+For every algorithm run, the Results tab shows:
+- Average Waiting Time (AWT)
+- Average Turnaround Time (ATT)
+- CPU Utilization (%)
+- Throughput (processes/unit)
+- Average Response Time
+
+---
+
+## Project Structure
+
+```
+CpuScheduler/
+├── CpuSchedulerForm.cs           # Main form + all algorithm implementations
+├── CpuSchedulerForm.Designer.cs  # UI component definitions
+├── Algorithms.cs                 # Legacy algorithm implementations
+├── Helper.cs                     # Helper utilities
+├── ModifyProgressBarColor.cs     # Custom progress bar color helper
+├── Program.cs                    # Application entry point
+└── Properties/                   # Assembly and resource files
 ```
 
-## Usage
+---
 
-1. Enter the desired number of processes
-2. Choose a scheduling algorithm from the interface
-3. The app will prompt for additional values as needed (burst time, priority, quantum time, etc.)
-4. View the results in the display table showing waiting times and turnaround times
+## Platform Tested
 
-### License
+- **OS:** Windows 11
+- **IDE:** Visual Studio Code
+- **.NET:** 8.0 SDK
+
+---
+
+## License
 
 This project is licensed under the terms of the [MIT license](LICENSE.txt).
