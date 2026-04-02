@@ -5,7 +5,7 @@ an interactive graphical interface. Built for CS 3502: Operating Systems at
 Kennesaw State University.
 
 **Fork maintained by Chris Regan** — Original creator: Francis (used with permission)  
-**Extended by: YOUR NAME HERE** — Added SRTF and HRRN algorithms for Project 2
+**Extended by: Alexia Martinez** — Added SRTF and HRRN algorithms for Project 2
 
 ---
 
